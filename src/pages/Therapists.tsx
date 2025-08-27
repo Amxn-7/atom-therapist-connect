@@ -117,9 +117,9 @@ const therapists: Therapist[] = [
 
 const Therapists = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSpecialization, setSelectedSpecialization] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [priceRange, setPriceRange] = useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("all");
+  const [selectedLocation, setSelectedLocation] = useState("all");
+  const [priceRange, setPriceRange] = useState("all");
 
   const filteredTherapists = therapists.filter(therapist => {
     return (
@@ -128,11 +128,11 @@ const Therapists = () => {
         spec.toLowerCase().includes(searchTerm.toLowerCase())
       )
     ) &&
-    (selectedSpecialization === "" || 
+    (selectedSpecialization === "all" || 
      therapist.specializations.includes(selectedSpecialization)) &&
-    (selectedLocation === "" || 
+    (selectedLocation === "all" || 
      therapist.location.includes(selectedLocation)) &&
-    (priceRange === "" || 
+    (priceRange === "all" || 
      (priceRange === "low" && parseInt(therapist.price.replace(/\D/g, '')) <= 120) ||
      (priceRange === "medium" && parseInt(therapist.price.replace(/\D/g, '')) > 120 && parseInt(therapist.price.replace(/\D/g, '')) <= 150) ||
      (priceRange === "high" && parseInt(therapist.price.replace(/\D/g, '')) > 150));
@@ -176,7 +176,7 @@ const Therapists = () => {
                   <SelectValue placeholder="Specialization" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Specializations</SelectItem>
+                  <SelectItem value="all">All Specializations</SelectItem>
                   {allSpecializations.map(spec => (
                     <SelectItem key={spec} value={spec}>{spec}</SelectItem>
                   ))}
@@ -188,7 +188,7 @@ const Therapists = () => {
                   <SelectValue placeholder="Location" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Locations</SelectItem>
+                  <SelectItem value="all">All Locations</SelectItem>
                   {allLocations.map(location => (
                     <SelectItem key={location} value={location}>{location}</SelectItem>
                   ))}
@@ -200,7 +200,7 @@ const Therapists = () => {
                   <SelectValue placeholder="Price Range" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Prices</SelectItem>
+                  <SelectItem value="all">All Prices</SelectItem>
                   <SelectItem value="low">Under $120</SelectItem>
                   <SelectItem value="medium">$120 - $150</SelectItem>
                   <SelectItem value="high">Over $150</SelectItem>
@@ -211,9 +211,9 @@ const Therapists = () => {
                 variant="outline" 
                 onClick={() => {
                   setSearchTerm("");
-                  setSelectedSpecialization("");
-                  setSelectedLocation("");
-                  setPriceRange("");
+                  setSelectedSpecialization("all");
+                  setSelectedLocation("all");
+                  setPriceRange("all");
                 }}
                 className="w-full"
               >
@@ -313,9 +313,9 @@ const Therapists = () => {
             <Button 
               onClick={() => {
                 setSearchTerm("");
-                setSelectedSpecialization("");
-                setSelectedLocation("");
-                setPriceRange("");
+                setSelectedSpecialization("all");
+                setSelectedLocation("all");
+                setPriceRange("all");
               }}
             >
               Clear All Filters
