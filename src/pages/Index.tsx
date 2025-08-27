@@ -28,11 +28,12 @@ const Index = () => {
             Find Therapists
           </Button>
           <Button 
+            onClick={() => navigate('/depression-test')}
             variant="outline" 
             size="lg"
             className="px-8 py-3 text-lg"
           >
-            Learn More
+            Take Depression Test
           </Button>
         </div>
       </div>
